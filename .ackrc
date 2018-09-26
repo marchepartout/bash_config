@@ -1,0 +1,3 @@
+--type-set=ts:ext:ts
+--type-set=txt:ext:txt
+--type-set=hpp:ext:h,hpp

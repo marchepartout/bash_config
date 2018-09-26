@@ -1,0 +1,66 @@
+[user]
+  name = marchepartout
+  email = marchepartout@hotmail.com
+[core]
+  editor = vim
+[credential]
+  helper = store
+  # Stay logged for 28 days (or next reboot)
+  helper = cache --timeout=2419200
+  # Flush the cache with:
+  # git credential-cache exit
+[alias]
+  current-branch = rev-parse --abbrev-ref HEAD
+  current-tracking = rev-parse --abbrev-ref --symbolic-full-name @{upstream}
+  # git log
+  # In case of emergency: "git log --decorate --oneline"
+  # Usefull options:
+  # --all
+  # --no-merges
+  # -L <line_start>,<line_end>:<file>
+  l = log --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+  lp = !git l --patch
+  glog = !git l --graph
+  lg = !git glog
+  comp = "!git log -left-to-right `git current-tracking`..."
+  # Update tags + prune
+  f = fetch --tags --prune
+  fa = fetch --all
+  co = checkout
+  b = branch -vv
+  ba = branch --all -vv
+  ci = commit
+  cia = commit --amend --no-edit
+  ciaa = commit -a --amend --no-edit
+  st = status
+  unstage = reset HEAD --
+  df = diff
+  dfw = diff --ignore-space-change
+  dt = difftool
+  rem = remote -v
+  export = format-patch
+  stash-unapply = !git stash show -p | git apply -R
+  in = !git f -q && git l ..origin/master
+  out = !git f -q && git l origin/master..
+[log]
+  decorate = true
+  # Use abbrev SHAs whenever possible/relevant instead of full 40 chars
+  abbrevCommit = true
+  # Automatically --follow when given a single path
+  follow = true
+[push]
+  default = simple
+[diff]
+  tool = vimdiff
+  # Use better, descriptive initials (c=commit, i=index, w=working tree, o=object) instead of a/b.
+  mnemonicPrefix = true
+  # Show renames/moves as such
+  renames = true
+  # When using --word-diff, assume --word-diff-regex=.
+  wordRegex = .
+  # Display submodule-related information (commit listings)
+  submodule = log
+[difftool]
+  prompt = false
+[color]
+  ui = auto
